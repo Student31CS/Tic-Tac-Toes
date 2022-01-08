@@ -22,6 +22,8 @@ int main() {
 
 
     int square;
+    int player1;
+    int player2;
 
 
 
@@ -68,11 +70,15 @@ int main() {
             break;
         }
 
+        else {
         player1_turn();
         k++;
+        }
 
-
-        if (k < 9) {
+        if (check_win() == 1 || check_win() == 2) {
+            break;
+        }
+        else if (k < 9) {
             player2_turn();
             k++;
         }
@@ -81,4 +87,27 @@ int main() {
         }
     }
 
+    sleep(2);
+    if (check_win() == 1) {
+        player1 ++;
+        std::cout << "\n\n\n\n\n===================\n";
+        std::cout << "PLAYER 1 WINS!!\n";
+        std::cout << "===================\n\n";
+        grid();
+    }
+    else if (check_win() == 2) {
+        player2 ++;
+        std::cout << "\n\n\n\n\n===================\n";
+        std::cout << "PLAYER 2 WINS!!\n";
+        std::cout << "===================\n\n";
+        grid();
+    }
+    else {
+        std::cout << "\n\n\n\n\n===================\n";
+        std::cout << "IT'S A TIE!!\n";
+        std::cout << "===================\n\n";
+        grid();
+    }
+
+return 0;
 }
