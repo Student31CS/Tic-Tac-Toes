@@ -5,31 +5,86 @@
 
 
 std::string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+int choice;
+int choice_check;
+
+
+void player1_choice() {
+    board[choice - 1] = "X";
+}
+
+void player2_choice() {
+    board[choice - 1] = "0";
+}
+
+void player1_pick() {
+    std::cout << "\n\nPlease pick a square:\n";
+    std::cin >> choice_check;
+}
+
+void player2_pick() {
+    std::cout << "\n\nPlease pick a square:\n";
+    std::cin >> choice_check;
+}
 
 void player1_turn() {
-    int choice;
     std::cout << "=================================\n";
     std::cout << "Tic-Tac-Toe    Player One's Turn!\n";
     std::cout << "=================================\n";
     sleep(2);
     grid();
     sleep(2);
-    std::cout << "\n\nPlease pick a square:\n";
-    std::cin >> choice;
-    board[choice - 1] = "X";
+    while (choice_check == choice) {
+        player1_pick();
+        if (board[choice_check - 1] == " ") {
+            choice = choice_check;
+            player1_choice();
+            break;
+        }
+        else {
+            std::cout << "You picked an invalid option.\n";
+            sleep(2);
+            choice_check = choice;
+        }
+    }
+
+        std::cout << ".";
+        sleep(1);
+        std::cout << ".";
+        sleep(1);
+        std::cout << ".\n";
+        sleep(1);
+        
 }
 
 void player2_turn() {
-    int choice;
     std::cout << "=================================\n";
     std::cout << "Tic-Tac-Toe    Player Two's Turn!\n";
     std::cout << "=================================\n";
     sleep(2);
     grid();
     sleep(2);
-    std::cout << "\n\nPlease pick a square:\n";
-    std::cin >> choice;
-    board[choice - 1] = "O";
+    while (choice_check == choice) {
+        player2_pick();
+        if (board[choice_check - 1] == " ") {
+            choice = choice_check;
+            player2_choice();
+            break;
+        }
+        else {
+            std::cout << "You picked an invalid option.\n";
+            sleep(2);
+            choice_check = choice;
+        }
+    }
+
+        std::cout << ".";
+        sleep(1);
+        std::cout << ".";
+        sleep(1);
+        std::cout << ".\n";
+        sleep(1);
+        
 }
 
 int check_win() {

@@ -61,7 +61,7 @@ int main() {
 
 
     // Gameplay. Loop until full board, check_win function will determine end of game
-    int k;
+    int k = 0;
     while (k < 9) {
 
         if (check_win() == 1 || check_win() == 2) {
@@ -71,12 +71,14 @@ int main() {
         player1_turn();
         k++;
 
-        if (check_win() == 1 || check_win() == 2) {
+
+        if (k < 9) {
+            player2_turn();
+            k++;
+        }
+        else {
             break;
         }
-
-        player2_turn();
-        k++;
     }
 
 }
